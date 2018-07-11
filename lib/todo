@@ -1,0 +1,63 @@
+fix scrolling for Month/Day
+if Month - scroll to specific day? at the end of block? like 1st date of month. May be animation with
+ highlight of post with selected date. What if there are a few post for this date? highligh all of them
+
+show icon for type of post - carusel or video
+
+layout for list:
+big image
+3 line of tekts
+swipe carusel
+play video and mute sound
+scroll to selected and load all text from IG
+refresh on pull down
+
+if photo is not square - show as square
+
+auto refresh when app started
+
+make good architecure of application
+
+-----------
+23.05 - db in new File is created. Now:
+(√)use username to create db filename
+(√)rename table - without username
+(√)add new table for carousel media: post_id media_url (?? if it's video link to video itself)
+(√)add column to post - count for carousel media
+
+(√)change addPost
+(√) change addMedia
+
+(√)cleanDB and load new from IG
+
+(√) show right amount of dots
+(√) make swipe
+-------------
+fix if there no media
+support video + mute sound
+
+-----
+10.june
+(√) rich formating - подкрашивать хэш теги и usernames
+(√) пофиксить картинки
+(√) заимплементить карусель
+(√) пофиксить данные с количеством картинок в карусели
+(√) - не нужно -  нужно ли хранит amount?
+(√)  сделать отображение видео (хранить thumbnail ?)
+ высота картинки - хранить?
+  bug -  not in range when scroll down
+
+ разобраться с тормозами на list.view - медленно скролится
+ разобраться с тормозами на grid.view - при быстром драге
+
+ логин page - add scrolling
+проверить как отображается пост в гриде если только видео
+
+ --для list view - openPost and jumpToDate - рендерить сразу с того поста. А при overflownotification загружать пред посты
+допилить видео - иконка исчезает. или тапать. при скроле - останавлитвать
+
+
+--------
+do debug with initialScrollOffset = 0;
+add initialIndex to SliverConstrain
+
