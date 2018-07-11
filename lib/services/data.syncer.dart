@@ -13,7 +13,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../main.dart';
 import '../services/auth.service.dart';
 import '../services/database.dart';
-import '../services/models.dart';
+import 'package:pastdate/models.dart';
 import '../pages/post.page.dart';
 import '../pages/list.page.dart';
 import '../pages/database.test.page.dart';

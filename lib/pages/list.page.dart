@@ -9,7 +9,7 @@ import '../main.dart';
 import '../services/auth.service.dart';
 import 'grid.page.dart';
 import 'post.page.dart';
-import '../services/models.dart';
+import 'package:pastdate/models.dart';
 import 'package:date_format/date_format.dart';
 import 'draggablescrollbar.dart';
 import 'custom.list.view.dart';

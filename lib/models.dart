@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 import 'dart:core';
 import 'package:instagram/instagram.dart';
 
-import '../services/database.dart';
+import 'package:pastdate/services/database.dart';
 
 class Post {
   static final db_postId = "post_id";

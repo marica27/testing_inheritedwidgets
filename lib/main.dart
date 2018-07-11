@@ -12,7 +12,7 @@ import 'pages/login.page.dart';
 import 'pages/post.page.dart';
 import 'pages/grid.page.dart';
 import 'pages/database.test.page.dart';
-import 'services/models.dart';
+import 'package:pastdate/models.dart';
 import 'services/auth.service.dart';
 import 'services/constants.dart';
 import 'services/data.syncer.dart';

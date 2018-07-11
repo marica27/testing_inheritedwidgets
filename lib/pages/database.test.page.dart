@@ -14,7 +14,7 @@ import 'post.page.dart';
 import 'list.page.dart';
 import 'home.page.dart';
 import '../services/database.dart';
-import '../services/models.dart';
+import 'package:pastdate/models.dart';
 import '../services/data.syncer.dart';
 
 class TestDatabase extends StatefulWidget {

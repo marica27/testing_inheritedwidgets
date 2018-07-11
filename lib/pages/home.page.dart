@@ -11,7 +11,7 @@ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import '../main.dart';
 import '../services/auth.service.dart';
 import '../services/database.dart';
-import '../services/models.dart';
+import 'package:pastdate/models.dart';
 import 'post.page.dart';
 import 'list.page.dart';
 

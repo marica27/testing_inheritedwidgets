@@ -7,7 +7,7 @@ import 'package:flutter/foundation.dart';
 import 'dart:async';
 import 'dart:io';
 
-import 'models.dart';
+import 'package:pastdate/models.dart';
 
 typedef Future<List<Media>> GetNextMedia({String nextId});
 
