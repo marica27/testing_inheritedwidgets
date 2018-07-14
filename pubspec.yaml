@@ -6,19 +6,19 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^0.1.0
-  instagram: ^1.0.0-rc.1
-  http: ^0.11.3+16
-  shared_preferences: ^0.4.1
-  async_loader: ^0.1.1
-  flutter_webview_plugin: ^0.1.5
-  url_launcher: ^3.0.0
-  date_format: ^1.0.4
-  sqflite: any
-  path_provider: ^0.4.0
-  cached_network_image: ^0.4.1
-  after_layout: ^1.0.2
-  carousel: ^0.0.1
-  video_player: ^0.6.0
+  #instagram: ^1.0.0-rc.1
+  #http: ^0.11.3+16
+  #shared_preferences: ^0.4.1
+  #async_loader: ^0.1.1
+  #flutter_webview_plugin: ^0.1.5
+  #url_launcher: ^3.0.0
+  #date_format: ^1.0.4
+  #sqflite: any
+  #path_provider: ^0.4.0
+  #cached_network_image: ^0.4.1
+  #after_layout: ^1.0.2
+  #carousel: ^0.0.1
+  #video_player: ^0.6.0
 
 dev_dependencies:
   flutter_test:

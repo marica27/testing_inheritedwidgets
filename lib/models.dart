@@ -1,8 +1,66 @@
 import 'package:meta/meta.dart';
 import 'dart:core';
-import 'package:instagram/instagram.dart';
+//import 'package:instagram/instagram.dart';
 
-import 'package:pastdate/services/database.dart';
+enum VisibleAction { day, month, instaview }
+enum FirstLoadState { none, process, failure, finisn }
+
+
+class AppState {
+  bool isLoading;
+  String accessToken;
+  User user;
+  List<Post> posts;
+  FirstLoadState firstLoadState;
+  VisibleAction visibleAction;
+  DateTime selectedDate;
+
+  factory AppState.loading() => AppState(isLoading: true);
+
+  AppState({
+    this.isLoading = false,
+    this.accessToken,
+    this.user,
+    this.posts = const [],
+    this.firstLoadState = FirstLoadState.finisn,
+    this.visibleAction = VisibleAction.day,
+    this.selectedDate,
+  });
+
+  clearPosts() => posts = [];
+
+  bool isUserLoggedIn() => user != null;
+
+
+  @override
+  String toString() {
+    return 'AppState{isLoading: $isLoading, accessToken: $accessToken, user: $user, posts: $posts, firstLoadState: $firstLoadState, visibleAction: $visibleAction, selectedDate: $selectedDate}';
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is AppState &&
+          runtimeType == other.runtimeType &&
+          user == other.user &&
+          posts == other.posts &&
+          firstLoadState == other.firstLoadState &&
+          visibleAction == other.visibleAction &&
+          selectedDate == other.selectedDate;
+
+  @override
+  int get hashCode =>
+      user.hashCode ^
+      posts.hashCode ^
+      firstLoadState.hashCode ^
+      visibleAction.hashCode ^
+      selectedDate.hashCode;
+}
+
+class User {
+  String username;
+  User({this.username});
+}
 
 class Post {
   static final db_postId = "post_id";
@@ -17,7 +75,7 @@ class Post {
 
   bool captionHeightChanged = false;
 
-  List<PostMedia> media = new List();
+//  List<PostMedia> media = new List();
 
   Post(
       {@required this.postId,
@@ -27,45 +85,6 @@ class Post {
       @required this.type,
       @required this.caption});
 
-  Post.fromMedia(Media m) {
-    this.postId = m.id;
-    this.link = m.link;
-    this.thumbnailUrl = m.images.thumbnail.url;
-    this.createdTime = m.createdTime;
-    this.type = m.type;
-    this.caption = m.caption.text;
-
-    if (type == MediaType.carousel && m.carouselMedia.length > 0) {
-      for (int i = 0; i < m.carouselMedia.length; i++) {
-        Media carouselMedia = m.carouselMedia[i];
-        if (carouselMedia.type == MediaType.video) {
-          this.media.add(new PostMedia.fromMediaImage(
-              postId: m.id,
-              order: i,
-              type: carouselMedia.type,
-              media: carouselMedia.videos.standardResolution));
-        } else {
-          this.media.add(new PostMedia.fromMediaImage(
-              postId: m.id,
-              order: i,
-              type: carouselMedia.type,
-              media: carouselMedia.images.standardResolution));
-        }
-      }
-    } else {
-      if (m.type == MediaType.video) {
-        this.media = [
-          new PostMedia.fromMediaImage(
-              postId: m.id, type: m.type, media: m.videos.standardResolution)
-        ];
-      } else {
-        this.media = [
-          new PostMedia.fromMediaImage(
-              postId: m.id, type: m.type, media: m.images.standardResolution)
-        ];
-      }
-    }
-  }
 
   Post.fromMap(Map<String, dynamic> map)
       : this(
@@ -77,13 +96,6 @@ class Post {
           caption: map[db_caption],
         );
 
-  bool isCarousel() {
-    return type == MediaType.carousel;
-  }
-
-  bool isVideo() {
-    return type == MediaType.video;
-  }
 
   Map<String, dynamic> toMap() {
     return {
@@ -97,7 +109,7 @@ class Post {
   }
 
   String toString() {
-    return toMap().toString() + " ${media.length} ${media}";
+    return toMap().toString();
   }
 
   bool operator ==(other) {
@@ -105,7 +117,6 @@ class Post {
   }
 
   int get hashCode => this.postId.hashCode;
-
 }
 
 class PostMedia {
@@ -135,12 +146,12 @@ class PostMedia {
       {@required String postId,
       int order = 0,
       @required String type,
-      @required MediaImage media}) {
+     }) {
     this.postId = postId;
     this.type = type;
-    this.imageUrl = media.url;
-    this.width = media.width * 1.0;
-    this.height = media.height * 1.0;
+    this.imageUrl = "";
+    this.width = 1.0;
+    this.height =  1.0;
     this.order = order;
   }
 
@@ -170,4 +181,3 @@ class PostMedia {
     return toMap().toString();
   }
 }
-
